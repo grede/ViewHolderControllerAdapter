@@ -1,0 +1,32 @@
+apply plugin: 'com.jfrog.bintray'
+
+version = '1.0.1'
+
+task sourcesJar(type: Jar) {
+    from android.sourceSets.main.java.srcDirs
+    classifier = 'sources'
+}
+
+artifacts {
+    archives sourcesJar
+}
+
+Properties properties = new Properties()
+properties.load(new FileInputStream(rootProject.file("bintray.properties")))
+
+bintray {
+    user = properties.getProperty("bintray.user")
+    key = properties.getProperty("bintray.apikey")
+
+    pkg {
+        repo = 'maven'
+        name = 'app.xorium.viewholdercontrolleradapter'
+        configurations = ['archives']
+        desc = 'Simple wrapper around ViewHolder-Adapter logic that allows easily define RecyclerView lists with different view types'
+        websiteUrl = 'https://github.com/grede/ViewHolderControllerAdapter'
+        vcsUrl = 'https://github.com/grede/ViewHolderControllerAdapter.git'
+        licenses = ["Apache-2.0"]
+        publish = true
+        publicDownloadNumbers = true
+    }
+}

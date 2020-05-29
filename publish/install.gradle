@@ -1,0 +1,39 @@
+apply plugin: 'com.github.dcendents.android-maven'
+
+group = 'app.xorium.viewholdercontrolleradapter'
+
+install {
+    repositories.mavenInstaller {
+        pom {
+            project {
+                packaging 'aar'
+                groupId 'app.xorium.viewholdercontrolleradapter'
+                artifactId 'viewholdercontrolleradapter'
+                name 'viewholdercontrolleradapter'
+                description 'Simple wrapper around ViewHolder-Adapter logic that allows easily define RecyclerView lists with different view types'
+                url 'https://github.com/grede/ViewHolderControllerAdapter'
+
+                licenses {
+                    license {
+                        name 'The Apache Software License, Version 2.0'
+                        url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                    }
+                }
+
+                developers {
+                    developer {
+                        id 'krozhenkov'
+                        name 'Kirill Rozhenkov'
+                        email 'gredex0r@gmail.com'
+                    }
+                }
+
+                scm {
+                    connection 'https://github.com/grede/ViewHolderControllerAdapter.git'
+                    developerConnection 'https://github.com/grede/ViewHolderControllerAdapter.git'
+                    url 'https://github.com/grede/ViewHolderControllerAdapter'
+                }
+            }
+        }
+    }
+}
