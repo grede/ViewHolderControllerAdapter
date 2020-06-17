@@ -5,14 +5,14 @@ import androidx.recyclerview.widget.RecyclerView
 import app.xorium.viewholdercontrolleradapter.ViewHolderController
 
 
-class SingleViewHolderControllerAdapter<in T : Any>(
-    private val controller: Lazy<ViewHolderController<T, RecyclerView.ViewHolder>>,
+class SingleViewHolderControllerAdapter<T, VH : RecyclerView.ViewHolder>(
+    private val controller: Lazy<ViewHolderController<T, VH>>,
     private val content: List<T>,
     private val onClick: ((T) -> Unit)? = null
-) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+) : RecyclerView.Adapter<VH>() {
 
     constructor(
-        controller: ViewHolderController<T, RecyclerView.ViewHolder>,
+        controller: ViewHolderController<T, VH>,
         content: List<T>,
         onClick: ((T) -> Unit)? = null
     ) : this(
@@ -21,7 +21,7 @@ class SingleViewHolderControllerAdapter<in T : Any>(
         onClick = onClick
     )
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VH {
         return controller.value.createViewHolder(parent)
     }
 
@@ -29,7 +29,7 @@ class SingleViewHolderControllerAdapter<in T : Any>(
         return content.size
     }
 
-    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: VH, position: Int) {
         controller.value.bind(content[position], holder)
     }
 }
